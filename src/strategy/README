@@ -1,0 +1,8 @@
+打分策略：v0.1
+
+整个打分逻辑，分为三个层次，帧->时间窗口->总学习时间
+1、针对每一帧，利用pose，face和iris信息，调用Scorer::predict方法得到每一帧的基础信息BehavioralClus，
+    BehavioralClus主要是包含跟打分相关的一些线索，用于后期打分使用
+2、然后，由于单帧信息不够鲁棒，以一段时间为间隔（15s或者1min），将时间窗口内的所有帧的BehavioralClus
+    信息进行汇总，调用score_attention方法和score_health得到每个时间窗口的专注度得分和健康度得分
+3、对于整个学习时间的打分，将时间窗口的打分信息进行平均即可，count_attention和count_health方法。

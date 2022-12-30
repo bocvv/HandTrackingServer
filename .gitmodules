@@ -1,0 +1,3 @@
+[submodule "src/strategy"]
+	path = src/strategy
+	url = git@gitlab.corp.youdao.com:Aladdin/strategy-related.git
